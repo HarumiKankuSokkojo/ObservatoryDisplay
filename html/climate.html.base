@@ -1,0 +1,18 @@
+<html>
+<head>
+<meta http-equiv="refresh" content="30;URL=graph.html">
+<title> 現在の天候 </title>
+</head>
+<body>
+<span style="font-size:400%; color:red">S-47a</span>
+<span style="font-size:500%; color:blue">風立委員会</span>
+<p style="font-size:250%">
+$$date$$ $$time$$
+</p>
+<table style="font-size:200%">
+<tr><th>気温</th><td>$$temp$$ ℃</td><th>Heat Index</th><td>$$heatindex$$</td></tr>
+<tr><th>湿度</th><td>$$humid$$ %</td><th>不快指数</th><td>$$discomfort$$</td></tr>
+<tr><th>気圧</th><td>$$press$$ hPa</td></tr>
+</table>
+</body>
+</html>
