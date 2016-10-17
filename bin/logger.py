@@ -17,6 +17,13 @@ PLTBASE = ROOTDIR + "/bin/climate.plt.base"
 
 climatepngfull = ""
 
+
+nowtemp, nowpress, nowhumid =  bme280.readData()
+tmin = (int(nowtemp / 5) -1) *5
+tmax = (int(nowtemp / 5) +3) *5
+hmin = (int(nowhumid / 5) -1) *5
+hmax = (int(nowhumid / 5) +3) *5
+
 while 1:
 
     ## get temp and humidity
@@ -93,11 +100,27 @@ while 1:
     graphht.close
     graphbs.close
 
+    if tmin > nowtemp:
+        tmin = tmin -5
+        tmin = tmax -5
+    if tmax < nowtemp:
+        tmin = tmin +5
+        tmin = tmax +5
+    if hmin > nowhumid:
+        hmin = hmin -5
+        hmin = hmax -5
+    if hmax < nowhumid:
+        hmin = hmin +5
+        hmin = hmax +5
+
+
     plttd = codecs.open(PLTFILE, 'w', 'utf_8')
     pltbs = codecs.open(PLTBASE, 'r', 'utf_8')
     for pltline in pltbs:
         plt1 = pltline.replace('$$datalog$$', "\"" + logfile + "\"")\
-        .replace('$$climatepng$$', climatepngfull)
+        .replace('$$climatepng$$', climatepngfull)\
+        .replace('$$tmin$$', str(tmin)).replace('$$tmax$$', str(tmax))\
+        .replace('$$hmin$$', str(hmin)).replace('$$hmax$$', str(hmax))
         plttd.write(plt1)
     plttd.close
     pltbs.close

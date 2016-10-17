@@ -4,8 +4,8 @@
 <title> 現在の天候 </title>
 </head>
 <body>
-<span style="font-size:400%; color:red">S-47a</span>
-<span style="font-size:500%; color:blue">風立委員会</span>
+<span style="font-size:400%; color:red">イ-09b</span>
+<span style="font-size:500%; color:blue">晴海管区測候所</span>
 <p style="font-size:250%">
 $$date$$ $$time$$
 </p>
