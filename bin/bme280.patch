@@ -1,0 +1,120 @@
+*** bme280_sample.py	2016-10-18 00:13:50.519986179 +0900
+--- bme280.py	2016-08-08 20:08:00.000000000 +0900
+***************
+*** 1,12 ****
+  #coding: utf-8
+  
+! from smbus2 import SMBus
+  import time
+  
+  bus_number  = 1
+  i2c_address = 0x76
+  
+! bus = SMBus(bus_number)
+  
+  digT = []
+  digP = []
+--- 1,12 ----
+  #coding: utf-8
+  
+! import smbus
+  import time
+  
+  bus_number  = 1
+  i2c_address = 0x76
+  
+! bus = smbus.SMBus(bus_number)
+  
+  digT = []
+  digP = []
+*************** def get_calib_param():
+*** 60,74 ****
+  
+  def readData():
+  	data = []
+! 	for i in range (0xF7, 0xF7+8):
+! 		data.append(bus.read_byte_data(i2c_address,i))
+  	pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
+  	temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
+  	hum_raw  = (data[6] << 8)  |  data[7]
+  	
+! 	compensate_T(temp_raw)
+! 	compensate_P(pres_raw)
+! 	compensate_H(hum_raw)
+  
+  def compensate_P(adc_P):
+  	global  t_fine
+--- 60,72 ----
+  
+  def readData():
+  	data = []
+! 	for ic in range (0xF7, 0xF7+8):
+! 		data.append(bus.read_byte_data(i2c_address,ic))
+  	pres_raw = (data[0] << 12) | (data[1] << 4) | (data[2] >> 4)
+  	temp_raw = (data[3] << 12) | (data[4] << 4) | (data[5] >> 4)
+  	hum_raw  = (data[6] << 8)  |  data[7]
+  	
+! 	return compensate_T(temp_raw), compensate_P(pres_raw), compensate_H(hum_raw)
+  
+  def compensate_P(adc_P):
+  	global  t_fine
+*************** def compensate_P(adc_P):
+*** 92,98 ****
+  	v2 = ((pressure / 4.0) * digP[7]) / 8192.0
+  	pressure = pressure + ((v1 + v2 + digP[6]) / 16.0)  
+  
+! 	print "pressure : %7.2f hPa" % (pressure/100)
+  
+  def compensate_T(adc_T):
+  	global t_fine
+--- 90,96 ----
+  	v2 = ((pressure / 4.0) * digP[7]) / 8192.0
+  	pressure = pressure + ((v1 + v2 + digP[6]) / 16.0)  
+  
+! 	return  pressure/100
+  
+  def compensate_T(adc_T):
+  	global t_fine
+*************** def compensate_T(adc_T):
+*** 100,106 ****
+  	v2 = (adc_T / 131072.0 - digT[0] / 8192.0) * (adc_T / 131072.0 - digT[0] / 8192.0) * digT[2]
+  	t_fine = v1 + v2
+  	temperature = t_fine / 5120.0
+! 	print "temp : %-6.2f ℃" % (temperature) 
+  
+  def compensate_H(adc_H):
+  	global t_fine
+--- 98,104 ----
+  	v2 = (adc_T / 131072.0 - digT[0] / 8192.0) * (adc_T / 131072.0 - digT[0] / 8192.0) * digT[2]
+  	t_fine = v1 + v2
+  	temperature = t_fine / 5120.0
+! 	return  temperature
+  
+  def compensate_H(adc_H):
+  	global t_fine
+*************** def compensate_H(adc_H):
+*** 114,120 ****
+  		var_h = 100.0
+  	elif var_h < 0.0:
+  		var_h = 0.0
+! 	print "hum : %6.2f ％" % (var_h)
+  
+  
+  def setup():
+--- 112,118 ----
+  		var_h = 100.0
+  	elif var_h < 0.0:
+  		var_h = 0.0
+! 	return var_h
+  
+  
+  def setup():
+*************** if __name__ == '__main__':
+*** 146,151 ****
+  		pass
+  
+  
+- 
+- 
+- 
+--- 144,146 ----
