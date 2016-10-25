@@ -75,12 +75,12 @@ set timestamp  offset character 0, 0, 0 font "" norotate
 set xlabel "" 
 set xlabel  offset character 0, 0, 0 font "" textcolor lt -1 norotate
 set xrange [ "00:00:00" : "24:00:00" ] noreverse nowriteback
-set ylabel "気温" 
+set ylabel "気温(℃)" 
 set ylabel  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
-set y2label "湿度" 
+set y2label "湿度(%)" 
 set y2label  offset character 0, 0, 0 font "" textcolor lt -1 rotate by -270
-set yrange [ $$tmin$$ : $$tmax$$ ] noreverse nowriteback
-set y2range [ $$hmin$$ : $$hmax$$ ] noreverse nowriteback
+set yrange [ * : * ] noreverse nowriteback
+set y2range [ 0<* : *<100 ] noreverse nowriteback
 set locale "ja_JP.UTF-8"
 set palette positive nops_allcF maxcolors 0 gamma 1.5 color model RGB 
 set palette rgbformulae 7, 5, 15
@@ -94,5 +94,5 @@ set fit noerrorvariables noprescale
 GNUTERM = "png"
 set terminal "png" size 1200,600 large font "ipagp,20"
 set output "$$climatepng$$"
-plot $$datalog$$ using 2:3 with line linewidth 3 title "気温",  $$datalog$$ using 2:4 with line linewidth 3 title "湿度" axis x1y2
+plot $$datalog$$ using 2:3 with line linewidth 3 title "気温(℃)",  $$datalog$$ using 2:4 with line linewidth 3 title "湿度(%)" axis x1y2
 #    EOF
