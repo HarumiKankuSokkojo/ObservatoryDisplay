@@ -6,7 +6,7 @@ import os
 import subprocess
 import bme280
 
-ROOTDIR = "/home/pi/HDO-Display"
+ROOTDIR = "/home/pi/ObservatoryDisplay"
 CLIMATEHTML = ROOTDIR + "/html/climate.html"
 CLIMATEBASE = ROOTDIR + "/html/climate.html.base"
 GRAPHHTML = ROOTDIR + "/html/graph.html"
