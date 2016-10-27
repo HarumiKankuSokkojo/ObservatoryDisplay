@@ -2,3 +2,11 @@
 https://www.raspberrypi.org/downloads/raspbian/
 Win32 Disk Imager
 https://ja.osdn.net/projects/sfnet_win32diskimager/
+
+2. 
+sudo raspi-config
+1. Expand Filesystem
+5. International
+I1 Change Locale   ja_JP.utf-8
+8. Advanced Option
+A7 I2C
