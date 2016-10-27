@@ -27,3 +27,5 @@ A7 I2C
 > patch bme280.patch
 
 > sudo apt-get install gnuplot
+
+
