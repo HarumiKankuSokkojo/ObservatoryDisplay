@@ -1,31 +1,74 @@
-1. OS ダウンロード
-https://www.raspberrypi.org/downloads/raspbian/
-Win32 Disk Imager
-https://ja.osdn.net/projects/sfnet_win32diskimager/
+インストール方法
+本ソフトによる温湿度の測定とサークル情報の表示に必要な項目のみ
+記載する。セキュリティの維持のため当然やっておくべきことなどは
+省略する。
 
-2. 
+
+1. OS (RASPBIAN JESSIE WITH PIXEL) のインストール
+https://www.raspberrypi.org/downloads/raspbian/
+NOOBS を使うか、OS イメージをダウンロードし適切なツールで
+microSD カードに書き込む
+
+2. 起動直後の config, update
 > sudo raspi-config
 1. Expand Filesystem
+   直接イメージを書き込んだ場合、ディスク領域は 4GB しかなく、
+   しかも残り容量が少ない。8GB 以上の microSD カード推奨
 5. International
 I1 Change Locale   ja_JP.utf-8
 8. Advanced Option
 A7 I2C
+   BME280 の通信に必要である。
 
 > sudo apt-get update
 > sudo apt-get upgrade
 
+3. 本ソフトのインストール
+本ソフトのダウンロード
 > mkdir ~/ROOTDIR ; cd ~/ROOTDIR
 > git init
 > sudo git pull https://github.com/HarumiKankuSokkojo/ObservatoryDisplay.git
+
+SWITCHSCIENCE によるサンプルコードのダウンロード
 > mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
 > git config global --user.name "User Name"  #SWITCHSCIENCE で必要
 > git config global --user.email "email@address"  #SWITCHSCIENCE で必要
 > sudo git pull https://github.com/SCITCHSCIENCE/BME280.git
 
+流用するコードをコピーし、必要な改変を行う
 > cd ~/ROOTDIR/bin
 > cp ~/SWITCSCIENCE/Python27/bme280_sample.py bme280.py
 > patch bme280.patch
 
+gnuplot をグラフ作成に使用するのでインストールする。
 > sudo apt-get install gnuplot
 
+4. 使用方法
+起動直後は時刻が正しくないので修正する。
+> sudo date 10282158  (月日時分をそれぞれ 2 桁で)
 
+> cd ~/ROOTDIR/bin
+> python logger.py
+
+~/ROOTDIR/data ディレクトリがない場合は作成し、
+YYYY-MM-DD-logger.txt ファイルに 60 秒ごとにデータを記録する。
+各行には下記フォーマットで各項目の間にスペースを入れて記録される。
+日付(YYYY-MM-DD)  時刻 (hh:mm:ss)  気温(℃)  湿度(%) 気圧(hPa)
+
+ブラウザが起動され、~/ROOTDIR/html にある以下のファイルを
+30 秒ごとに表示する。
+climate.html  計測した最新の気温、湿度、気圧と各種指標
+graph.html    気温と湿度のグラフ
+index.html
+
+climate.html は climate.html.base の $$変数$$ 部分を logger.py
+が 60 秒ごとに書き換えて作成する。
+graph.html は graph.html.base の $$climategraph$$ を logger.py
+が 60 秒ごとに書き換えて作成する。
+~/ROOT/html/climateYYYYMMDDhhmm.png は logger.py が 60 秒ごとに
+gnuplot が作成する。logger.py が動作している間は、不要になるった
+ファイルは削除するが、終了時などには消去できない。
+
+自サークル用にカスタマイズするには
+index.html, climate.html.base, graph.html.base を書き換え、
+その他使用するファイルを ~/ROOTDIR/html/ に置くことになるだろう。

@@ -76,7 +76,7 @@ while 1:
         elif heatindex < 125:
            cline2 = cline1.replace('$$heatindex$$', '<span style=\"background-color:red;\">{0:6.1f}</span>'.format(cheati))
         else:
-           cline2 = cline1.replace('$$heatindex$$', '<span style=\"background-color:black;color=white;\">{0:6.1f}</span>'.format(cheati))
+           cline2 = cline1.replace('$$heatindex$$', '<span style=\"background-color:black;color:red;\">{0:6.1f}</span>'.format(cheati))
 
         if discomi < 70:
            cline3 = cline2.replace('$$discomfort$$', '{0:6.1f}'.format(discomi))
@@ -87,7 +87,7 @@ while 1:
         elif discomi < 85:
            cline3 = cline2.replace('$$discomfort$$', '<span style=\"background-color:red;\">{0:6.1f}</span>'.format(discomi))
         else:
-           cline3 = cline2.replace('$$discomfort$$', '<span style=\"background-color:black;color=white;\">{0:6.1f}</span>'.format(discomi))
+           cline3 = cline2.replace('$$discomfort$$', '<span style=\"background-color:black;color:red;\">{0:6.1f}</span>'.format(discomi))
 
         clhtml.write(cline3)
     clhtml.close
