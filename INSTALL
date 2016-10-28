@@ -14,10 +14,18 @@ A7 I2C
 > sudo apt-get update
 > sudo apt-get upgrade
 
-> mkdir ROOTDIR ; cd ROOTDIR
+> mkdir ~/ROOTDIR ; cd ~/ROOTDIR
 > git init
 > sudo git pull https://github.com/HarumiKankuSokkojo/ObservatoryDisplay.git
 > mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
 > git config global --user.name "User Name"  #SWITCHSCIENCE で必要
 > git config global --user.email "email@address"  #SWITCHSCIENCE で必要
 > sudo git pull https://github.com/SCITCHSCIENCE/BME280.git
+
+> cd ~/ROOTDIR/bin
+> cp ~/SWITCSCIENCE/Python27/bme280_sample.py bme280.py
+> patch bme280.patch
+
+> sudo apt-get install gnuplot
+
+
