@@ -4,20 +4,27 @@ import codecs
 import time
 import os
 import subprocess
+import SimpleHTTPServer
+import threading
 import bme280
 
-ROOTDIR = "/home/pi/ObservatoryDisplay"
-CLIMATEHTML = ROOTDIR + "/html/climate.html"
-CLIMATEBASE = ROOTDIR + "/html/climate.html.base"
-GRAPHHTML = ROOTDIR + "/html/graph.html"
-GRAPHBASE = ROOTDIR + "/html/graph.html.base"
+ROOTDIR = "/home/pi/HDO-OD"
+HTMLDIR = ROOTDIR + "/html"
+CLIMATEHTML = HTMLDIR + "/climate.html"
+CLIMATEBASE = HTMLDIR + "/climate.html.base"
+GRAPHHTML = HTMLDIR + "/graph.html"
+GRAPHBASE = HTMLDIR + "/graph.html.base"
 PLTFILE = ROOTDIR + "/bin/climate.plt"
 PLTBASE = ROOTDIR + "/bin/climate.plt.base"
 
 GNUPLOT = "/usr/bin/gnuplot"
-BROWSER = "/usr/bin/epiphany-browser"
+BROWSER = "/usr/bin/chromium-browser"
+BROPTION = [BROWSER, "--start-fullscreen", CLIMATEHTML]
 
 climatepngfull = ""
+subprocess.call(["xset", "-dpms"])
+subprocess.call(["xset", "s", "off"])
+workbrowser = subprocess.Popen(BROPTION)
 
 while 1:
 
@@ -27,6 +34,10 @@ while 1:
 
 
     ## get localtime and check date
+    if os.path.isdir(ROOTDIR + '/data/'): 
+        pass
+    else:
+        os.mkdir(ROOTDIR + '/data/')
     logfile = ROOTDIR + '/data/' \
         + time.strftime("%Y-%m-%d") + '-logger.txt'
     
@@ -105,6 +116,11 @@ while 1:
     pltbs.close
 
     subprocess.call([GNUPLOT, PLTFILE])
+
+    if workbrowser.returncode is None:
+        pass
+    else:
+        workbrowser = subprocess.Popen(BROPTION)
 
     time.sleep(60 - int(time.strftime("%S")))
 
