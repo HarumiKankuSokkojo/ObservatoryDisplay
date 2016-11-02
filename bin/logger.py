@@ -20,6 +20,7 @@ PLTBASE = ROOTDIR + "/bin/climate.plt.base"
 GNUPLOT = "/usr/bin/gnuplot"
 BROWSER = "/usr/bin/chromium-browser"
 BROPTION = [BROWSER, "--start-fullscreen", CLIMATEHTML]
+os.environ["DISPLAY"] = ":0"
 
 climatepngfull = ""
 subprocess.call(["xset", "-dpms"])
