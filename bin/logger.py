@@ -8,7 +8,7 @@ import SimpleHTTPServer
 import threading
 import bme280
 
-ROOTDIR = "/home/pi/ROOTDIR
+ROOTDIR = "/home/pi/ROOTDIR"
 HTMLDIR = ROOTDIR + "/html"
 CLIMATEHTML = HTMLDIR + "/climate.html"
 CLIMATEBASE = HTMLDIR + "/climate.html.base"
