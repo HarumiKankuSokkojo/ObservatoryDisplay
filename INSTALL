@@ -39,7 +39,7 @@ SWITCHSCIENCE によるサンプルコードのダウンロード
 
 流用するコードをコピーし、必要な改変を行う
 > cd ~/ROOTDIR/bin
-> cp ~/SWITCSCIENCE/Python27/bme280_sample.py bme280.py
+> cp ~/SWITCHSCIENCE/Python27/bme280_sample.py bme280.py
 > patch <bme280.patch
 
 gnuplot をグラフ作成に使用するのでインストールする。

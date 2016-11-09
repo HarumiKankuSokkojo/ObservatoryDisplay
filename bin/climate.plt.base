@@ -94,5 +94,5 @@ set fit noerrorvariables noprescale
 GNUTERM = "png"
 set terminal "png" size 1200,500 large font "ipag,20"
 set output "$$climatepng$$"
-plot $$datalog$$ using 2:3 with line linewidth 3 title "気温(℃)" axis x1y1,  $$datalog$$ using 2:4 with line linewidth 3 title "湿度(%)" axis x1y2
+plot "$$datalog$$" using 2:3 with line linewidth 3 title "気温(℃)" axis x1y1,  $"$$datalog$$" using 2:4 with line linewidth 3 title "湿度(%)" axis x1y2
 #    EOF
