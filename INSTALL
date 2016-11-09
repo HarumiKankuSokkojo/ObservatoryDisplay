@@ -28,14 +28,14 @@ A7 I2C
 本ソフトのダウンロード
 > mkdir ~/ROOTDIR ; cd ~/ROOTDIR
 > git init
-> sudo git pull https://github.com/HarumiKankuSokkojo/ObservatoryDisplay.git
+> git pull https://github.com/HarumiKankuSokkojo/ObservatoryDisplay.git
 
 SWITCHSCIENCE によるサンプルコードのダウンロード
 ダウンロードのためにメールアドレスと名前の設定が必要である。
 > mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
-> git config global --user.name "User Name"
-> git config global --user.email "email@address"
-> sudo git pull https://github.com/SCITCHSCIENCE/BME280.git
+> git config --global user.name "User Name"
+> git config --global user.email "email@address"
+> git pull https://github.com/SCITCHSCIENCE/BME280.git
 
 流用するコードをコピーし、必要な改変を行う
 > cd ~/ROOTDIR/bin
