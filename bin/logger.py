@@ -110,7 +110,7 @@ while 1:
     plttd = codecs.open(PLTFILE, 'w', 'utf_8')
     pltbs = codecs.open(PLTBASE, 'r', 'utf_8')
     for pltline in pltbs:
-        plt1 = pltline.replace('$$datalog$$', "\"" + logfile + "\"")\
+        plt1 = pltline.replace('$$datalog$$', logfile)\
         .replace('$$climatepng$$', climatepngfull)
         plttd.write(plt1)
     plttd.close
