@@ -1,11 +1,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="30;URL=graph.html">
+<meta http-equiv="refresh" content="15;URL=graph.html">
 <title> 現在の天候 </title>
 </head>
 <body>
-<span style="font-size:500%; color:red">B ホール イ-09b</span>
+<span style="font-size:500%; color:red">東Ｑ49a</span>
 <br>
 <span style="font-size:600%; color:blue">晴海管区測候所</span>
 <p style="font-size:300%">

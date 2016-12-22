@@ -22,7 +22,7 @@ set format x "%H:%M"
 set format y "% g"
 set format y2 "% g"
 set grid xtics ytics linewidth 2
-set key inside right top vertical Right noreverse enhanced autotitles nobox
+set key inside left top vertical Right noreverse enhanced autotitles nobox
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
 set key noopaque
