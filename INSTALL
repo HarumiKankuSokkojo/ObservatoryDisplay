@@ -35,7 +35,7 @@ SWITCHSCIENCE によるサンプルコードのダウンロード
 > mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
 > git config --global user.name "User Name"
 > git config --global user.email "email@address"
-> git pull https://github.com/SCITCHSCIENCE/BME280.git
+> git pull https://github.com/SWITCHSCIENCE/BME280.git
 
 流用するコードをコピーし、必要な改変を行う
 > cd ~/ROOTDIR/bin
