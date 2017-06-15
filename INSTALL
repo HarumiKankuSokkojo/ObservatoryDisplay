@@ -68,7 +68,7 @@ climate.html は climate.html.base の $$変数$$ 部分を logger.py
 graph.html は graph.html.base の $$climategraph$$ を logger.py
 が 60 秒ごとに書き換えて作成する。
 ~/ROOT/html/climateYYYYMMDDhhmm.png は logger.py が 60 秒ごとに
-gnuplot が作成する。logger.py が動作している間は、不要になるった
+gnuplot が作成する。logger.py が動作している間は、不要になった
 ファイルは削除するが、終了時などには消去できない。
 
 自サークル用にカスタマイズするには
