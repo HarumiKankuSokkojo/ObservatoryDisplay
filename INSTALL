@@ -32,7 +32,7 @@ A7 I2C
 
 SWITCHSCIENCE によるサンプルコードのダウンロード
 ダウンロードのためにメールアドレスと名前の設定が必要である。
-> mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
+> mkdir ~/SWITCHSCIENCE; cd ~/SWITCHSCIENCE
 > git config --global user.name "User Name"
 > git config --global user.email "email@address"
 > git pull https://github.com/SWITCHSCIENCE/BME280.git
