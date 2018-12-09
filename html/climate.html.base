@@ -5,9 +5,9 @@
 <title> 現在の天候 </title>
 </head>
 <body>
-<span style="font-size:500%; color:red">東Ｑ49a</span>
+<span style="font-size:500%; color:red">え26</span>
 <br>
-<span style="font-size:600%; color:blue">晴海管区測候所</span>
+<span style="font-size:600%; color:blue">日本Apacheユーザ会(仮)<br>+晴海管区測候所</span>
 <p style="font-size:300%">
 $$date$$ $$time$$
 </p>
@@ -16,5 +16,8 @@ $$date$$ $$time$$
 <tr><th>湿度</th><td>$$humid$$ %</td><th>不快指数</th><td>$$discomfort$$</td></tr>
 <tr><th>気圧</th><td>$$press$$ hPa</td></tr>
 </table>
+<div align="right"; style="font-style:oblique">
+supported by 晴海管区測候所
+</div>
 </body>
 </html>

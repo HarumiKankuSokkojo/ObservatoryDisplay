@@ -1,16 +1,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="15;URL=index.html">
+<meta http-equiv="refresh" content="15;URL=graph.html">
 <title> グラフ </title>
 </head>
 <body>
-<p>
-<span style="font-size:500%; color:red">東Ｑ49a</span>
-<br><span style="font-size:600%; color:blue">晴海管区測候所</span>
-<p>
-<p>
-<img src="$$climatepng$$">
-</p>
+<span style="font-size:450%; color:red">く08b</span>
+<span style="font-size:450%; color:blue">晴海管区測候所</span>
+<br>
+<span style="font-size:300%">
+$$date$$ $$time$$
+</span><br>
+<table style="font-size:300%">
+<tr><th>気温</th><td>$$temp$$ ℃</td><th>Heat Index</th><td>$$heatindex$$</td><th>気圧</th><td>$$press$$ hPa</td></tr>
+<tr><th>湿度</th><td>$$humid$$ %</td><th>不快指数</th><td>$$discomfort$$</td></tr>
+</table>
+
+<img src="climate.png">
+<img src="pressure.png">
+<div align="right"; style="font-style:oblique">
+supported by 晴海管区測候所
+</div>
 </body>
 </html>
