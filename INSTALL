@@ -32,14 +32,14 @@ A7 I2C
 
 SWITCHSCIENCE によるサンプルコードのダウンロード
 ダウンロードのためにメールアドレスと名前の設定が必要である。
-> mkdir SWITCHSCIENCE; cd SWITCHSCIENCE
+> mkdir ~/SWITCHSCIENCE; cd ~/SWITCHSCIENCE
 > git config --global user.name "User Name"
 > git config --global user.email "email@address"
-> git pull https://github.com/SCITCHSCIENCE/BME280.git
+> git pull https://github.com/SWITCHSCIENCE/BME280.git
 
 流用するコードをコピーし、必要な改変を行う
 > cd ~/ROOTDIR/bin
-> cp ~/SWITCHSCIENCE/Python27/bme280_sample.py bme280.py
+> cp ~/SWITCHSCIENCE/BME280/Python27/bme280_sample.py bme280.py
 > patch <bme280.patch
 
 gnuplot をグラフ作成に使用するのでインストールする。
@@ -68,7 +68,7 @@ climate.html は climate.html.base の $$変数$$ 部分を logger.py
 graph.html は graph.html.base の $$climategraph$$ を logger.py
 が 60 秒ごとに書き換えて作成する。
 ~/ROOT/html/climateYYYYMMDDhhmm.png は logger.py が 60 秒ごとに
-gnuplot が作成する。logger.py が動作している間は、不要になるった
+gnuplot が作成する。logger.py が動作している間は、不要になった
 ファイルは削除するが、終了時などには消去できない。
 
 自サークル用にカスタマイズするには
