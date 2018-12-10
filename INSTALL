@@ -63,14 +63,8 @@ climate.html  計測した最新の気温、湿度、気圧と各種指標
 graph.html    気温と湿度のグラフ
 index.html
 
-climate.html は climate.html.base の $$変数$$ 部分を logger.py
-が 60 秒ごとに書き換えて作成する。
-graph.html は graph.html.base の $$climategraph$$ を logger.py
-が 60 秒ごとに書き換えて作成する。
-~/ROOT/html/climateYYYYMMDDhhmm.png は logger.py が 60 秒ごとに
-gnuplot が作成する。logger.py が動作している間は、不要になった
-ファイルは削除するが、終了時などには消去できない。
+> python drawgraph.py
+で graph.html ファイルにデータを書き込みグラフの画像を作成する
 
-自サークル用にカスタマイズするには
-index.html, climate.html.base, graph.html.base を書き換え、
-その他使用するファイルを ~/ROOTDIR/html/ に置くことになるだろう。
+自サークル用にカスタマイズするには graph.html.base を適宜書き換え、
+他に必要な第るがあれば /ROOTFIR/html とかに置く。
