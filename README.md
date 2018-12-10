@@ -15,7 +15,8 @@ https://github.com/SWITCHSCIENCE/BME280
 revisions
 2016/10/28
 初期バージョン
-
+2018/12/10
+毎秒ログを取る logger.py と html+グラフ作成の drawgraph.py に分離
 
 含まれるファイル
 INSTALL
@@ -23,7 +24,7 @@ README.md
 bin/bme280.patch
 bin/climate.plt.base
 bin/logger.py
-html/climate.html.base
+bin/drawgraph.py
 html/graph.html.base
-html/index.html
+
 
