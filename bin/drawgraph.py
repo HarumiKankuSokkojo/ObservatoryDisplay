@@ -4,7 +4,6 @@ import codecs
 import time
 import os
 import subprocess
-import threading
 import bme280
 
 ROOTDIR = "/home/pi/ROOTDIR"
