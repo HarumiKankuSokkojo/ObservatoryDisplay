@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import codecs
 import time
 import os
-import subprocess
-import SimpleHTTPServer
-import threading
 import bme280
 
 ROOTDIR = "/home/pi/ROOTDIR"
