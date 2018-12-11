@@ -29,10 +29,10 @@ while 1:
     logfile = ROOTDIR + '/data/' \
         + time.strftime("%Y-%m-%d") + '-logger.txt'
     
-    logwrite = open(logfile, 'a')
+    with open(logfile, 'a') as logwrite:
 
-    logwrite.write('{0} {1:-6.1f} {2:6.1f} {3:6.1f}\n'.\
-    format(nowtime, nowtemp, nowhumid, nowpress))
+        logwrite.write('{0} {1:-6.1f} {2:6.1f} {3:6.1f}\n'.\
+        format(nowtime, nowtemp, nowhumid, nowpress))
 
-    logwrite.close
+    logwrite.closed
 
