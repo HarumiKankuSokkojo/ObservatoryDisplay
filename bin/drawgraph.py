@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-import codecs
 import time
 import os
 import subprocess
@@ -11,10 +10,10 @@ ROOTDIR = "/home/pi/ROOTDIR"
 PLTFILE = ROOTDIR + "/bin/climate.plt"
 PLTBASE = ROOTDIR + "/bin/climate.plt.base"
 GNUPLOT = "/usr/bin/gnuplot"
-climatepng = "climate"  + ".png"
+climatepng = "climate.png"
 climatepngfull = ROOTDIR + "/html/" +  climatepng
 climatepngfulltmp = ROOTDIR + "/html/tmp." +  climatepng
-pressurepng = "pressure" + ".png"
+pressurepng = "pressure.png"
 pressurepngfull = ROOTDIR + "/html/" +  pressurepng
 pressurepngfulltmp = ROOTDIR + "/html/tmp." +  pressurepng
 logfile = ROOTDIR + '/data/' \
@@ -58,32 +57,32 @@ else:
    di_warn = '<span style=\"background-color:black;color:red;\">{0:6.1f}</span>'.format(discomi)
 
 ## input data to climate.html
-grphtml = codecs.open(GRAPHHTML, 'w', 'utf_8')
-grpbase = codecs.open(GRAPHBASE, 'r', 'utf_8')
-for htline in grpbase:
-    htline1 = htline.replace('$$date$$', time.strftime("%Y-%m-%d"))\
-     .replace('$$time$$', time.strftime("%H:%M"))\
-     .replace('$$temp$$', '{0:-6.1f}'.format(nowtemp))\
-     .replace('$$humid$$', '{0:6.1f}'.format(nowhumid))\
-     .replace('$$press$$', '{0:6.1f}'.format(nowpress))\
-     .replace('$$heatindex$$', hi_warn)\
-     .replace('$$discomfort$$', di_warn)
+with open(GRAPHHTML, 'w') as grphtml, \
+ open(GRAPHBASE, 'r') as grpbase:
+    for htline in grpbase:
+        htline1 = htline.replace('$$date$$', time.strftime("%Y-%m-%d"))\
+         .replace('$$time$$', time.strftime("%H:%M"))\
+         .replace('$$temp$$', '{0:-6.1f}'.format(nowtemp))\
+         .replace('$$humid$$', '{0:6.1f}'.format(nowhumid))\
+         .replace('$$press$$', '{0:6.1f}'.format(nowpress))\
+         .replace('$$heatindex$$', hi_warn)\
+         .replace('$$discomfort$$', di_warn)
 
-    grphtml.write(htline1)
-grphtml.close
-grpbase.close
+        grphtml.write(htline1)
+ 
+grphtml.closed
+grpbase.closed
 
 ## gnuplot graph
 
-plttd = codecs.open(PLTFILE, 'w', 'utf_8')
-pltbs = codecs.open(PLTBASE, 'r', 'utf_8')
-for pltline in pltbs:
-    plt1 = pltline.replace('$$datalog$$', logfile)\
-    .replace('$$climatepng$$', climatepngfulltmp)\
-    .replace('$$pressurepng$$', pressurepngfulltmp)
-    plttd.write(plt1)
-plttd.close
-pltbs.close
+with open(PLTFILE, 'w') as plttd, \
+ open(PLTBASE, 'r') as pltbs:
+    for pltline in pltbs:
+        plt1 = pltline.replace('$$datalog$$', logfile)
+        plttd.write(plt1)
+
+plttd.closed
+pltbs.closed
 
 subprocess.call([GNUPLOT, PLTFILE])
 os.rename(climatepngfulltmp, climatepngfull)
