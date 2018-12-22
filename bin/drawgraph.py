@@ -24,6 +24,7 @@ GRAPHBASE = ROOTDIR + "/html/graph.html.base"
 
 ## get temp and humidity
 nowtemp, nowpress, nowhumid =  bme280.readData()
+nowtime = int(time.time())
 
 ## Heat Index
 ftemp = nowtemp * 9 /5 +32
@@ -87,4 +88,41 @@ pltbs.closed
 subprocess.call([GNUPLOT, PLTFILE])
 os.rename(climatepngfulltmp, climatepngfull)
 os.rename(pressurepngfulltmp, pressurepngfull)         
+
+jsondata = """\
+{
+  "agent" : "Rasp Pi",
+  "metrics" : [
+    {
+      "name" : "temprature" ,
+      "namespace" : "Rasp Pi" ,
+      "data_point" : {
+        "timestamp" : """ +  '{0:d}'.format(nowtime) +  """ ,
+        "value" : """ +  '{0:6.1f}'.format(nowtemp) +  """ 
+      } 
+    } ,
+    {
+      "name" : "humidity" ,
+      "namespace" : "Rasp Pi" ,
+      "data_point" : {
+        "timestamp" : """ + '{0:d}'.format(nowtime) + """ ,
+        "value" : """ +  '{0:6.1f}'.format(nowhumid) +  """ 
+      }
+    } ,
+    {
+      "name" : "air pressure" ,
+      "namespace" : "Rasp Pi" ,
+      "data_point" : {
+        "timestamp" : """  + '{0:d}'.format(nowtime)  + """ ,
+        "value" : """ + '{0:6.1f}'.format(nowpress) + """
+      }
+    }
+  ]
+}
+"""
+
+MACHINISTJSON = ROOTDIR + '/html/machinist.json'
+with open(MACHINISTJSON, "w") as macjson:
+  macjson.write(jsondata)
+macjson.closed
 
