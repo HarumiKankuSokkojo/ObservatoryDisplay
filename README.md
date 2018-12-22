@@ -17,6 +17,8 @@ revisions
 初期バージョン
 2018/12/10
 毎秒ログを取る logger.py と html+グラフ作成の drawgraph.py に分離
+2018/12/20
+machinist.iij.jp 用 json ファイル作成
 
 含まれるファイル
 INSTALL
